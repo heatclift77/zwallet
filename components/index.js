@@ -1,0 +1,10 @@
+import Auth from './layout/auth'
+import CustomInput from './customInput'
+import MainCustomBtn from './MainCustomBtn'
+import Navbar from './Navbar'
+import Footer from './Footer'
+import SideNav from './SideNav'
+import TemplatePage from './layout/TemplatePage'
+import CustomLayout from './layout/CustomLayout'
+import History from './history'
+export {Auth, CustomInput, MainCustomBtn, Navbar, Footer, SideNav, TemplatePage, CustomLayout, History}
