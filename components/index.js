@@ -7,4 +7,5 @@ import SideNav from './SideNav'
 import TemplatePage from './layout/TemplatePage'
 import CustomLayout from './layout/CustomLayout'
 import History from './history'
-export {Auth, CustomInput, MainCustomBtn, Navbar, Footer, SideNav, TemplatePage, CustomLayout, History}
+import Chart from './Chart'
+export { CustomInput, MainCustomBtn, Navbar, Footer, SideNav, TemplatePage, CustomLayout, History, Chart}

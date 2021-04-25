@@ -2,7 +2,7 @@ import React from 'react'
 
 function Footer() {
     return (
-        <div className="container-fluid bg-main">
+        <footer className="container-fluid bg-main">
             <div className="row">
                 <div className="col-10 mx-auto py-4">
                     <div className="row">
@@ -18,7 +18,7 @@ function Footer() {
                     </div>
                 </div>
             </div>
-        </div>
+        </footer>
     )
 }
 

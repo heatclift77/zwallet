@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-export default function CustomInput({placeholder, type, icon, onChange}) {
+export default function CustomInput({placeholder, type, icon, onChange, color, ...rest}) {
     const [togglePass, setTogglePass] = useState({
         icon : {
             on : "visibility",
@@ -22,11 +22,11 @@ export default function CustomInput({placeholder, type, icon, onChange}) {
     } 
     return (
         <div>
-            <div className="d-flex" style={{color:"#DADADA", borderBottom:"3px solid #DADADA"}}>
+            <div className="d-flex" style={{color:color, borderBottom:`3px solid ${color}`, transition:"all ease-in-out 0.2s"}}>
                 <span class="material-icons md-18 align-self-center">{icon}</span>
-                <input type={togglePass.type} placeholder={placeholder} className="border-0 py-2 mx-3 w-100" style={{outline:"none", background:"transparent"}} onChange={onChange} />
+                <input type={togglePass.type} placeholder={placeholder} className="border-0 py-2 mx-3 w-100" style={{outline:"none", background:"transparent"}} onChange={onChange} {...rest} />
                 <div className={type == "password" ? "unHide" : "hide"}>
-                    <button class="material-icons md-18 align-self-center border-0 bg-transparent" style={{color:"#DADADA"}} onClick={handleToggle} >{togglePass.type === "password"  ? togglePass.icon.on:togglePass.icon.off}</button>
+                    <div class="material-icons md-18 align-self-center c-pointer" style={{color:"#DADADA"}} onClick={handleToggle} >{togglePass.type === "text"  ? togglePass.icon.on:togglePass.icon.off}</div>
                 </div>
             </div>
         </div>

@@ -10,6 +10,18 @@ body{
 p{
   color: #88888F;
 }
+.btn-details-history{
+  border: 2px solid #6379F4;
+  background: transparent;
+  color: #6379F4;
+  border-radius: 0.6rem;
+  padding: 6px 12px;
+  transition: all ease-in-out 0.4s;
+}
+.btn-details-history:hover{
+  color: white;
+  background: #6379F4;
+}
 ::placeholder{
   color: #88888A;
 }
@@ -112,6 +124,15 @@ a:hover{
 .hide{
   display: none;
 }
+.c-pointer{
+  cursor : pointer;
+}
+.navbarShow{
+  right: 0;
+}
+.navbarHide{
+  right: -100%;
+}
 @media (max-width: 576px) {
   .show-sm{
     display: block !important;
@@ -152,4 +173,19 @@ a:hover{
     display: none;
   }
 }
+.showInAnimation {animation: showOpacity 0.6s;}
+@keyframes showOpacity{from{opacity: 0;} to{opacity: 1;}}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;1,400&display=swap")
