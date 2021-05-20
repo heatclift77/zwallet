@@ -32,10 +32,15 @@ export const signin = (data) => (dispatch) => {
             resolve(dataUser)
         })
         .catch((err) => {
-            dispatch(loginFailure(err.response.data.message))
-            reject({
-                message : err.response.data.message
-            })
+            if(err.message == "Network Error"){
+                reject({
+                    message : err.message
+                })
+            }else{
+                reject({
+                    message : err.response.data.message
+                })
+            }
         })
     })
 }

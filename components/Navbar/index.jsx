@@ -19,7 +19,7 @@ export default function Navbar({page}) {
         }
     }
     return (
-        <nav className="shadow-sm bg-white position-relative">
+        <nav className="shadow-sm bg-white position-relative" >
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-10 mx-auto py-4">
@@ -58,10 +58,10 @@ export default function Navbar({page}) {
                     </div>
                 </div>
             </div>
-            <div style={{width:"100vw", height:"100vh", position:"fixed", top:0, right:0, background:"rgba(0,0,0,0.4)"}} className={status.navbar == true ? "show" : "hide"} onClick={closeNav} >
+            <div style={{width:"100vw", height:"100vh", position:"fixed", top:0, right:0, background:"rgba(0,0,0,0.4)", zIndex:999}} className={status.navbar == true ? "show" : "hide"} onClick={closeNav} >
 
             </div>
-            <div style={{width:"60%", height:"100vh", position:"fixed", top:0, background:"white", transition:"all ease-in-out 0.4s"}} className={status.navbar == true ? "navbarShow" : "navbarHide"} >
+            <div style={{width:"60%", height:"100vh", position:"fixed", top:0, background:"white", transition:"all ease-in-out 0.4s", zIndex:9999}} className={status.navbar == true ? "navbarShow" : "navbarHide"} >
                 <div className="row my-5">
                     <div className="col-12">
                         <div className="d-flex justify-content-end me-4">

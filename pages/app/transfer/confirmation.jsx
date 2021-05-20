@@ -6,6 +6,7 @@ import Modal from 'react-modal'
 import { useState } from 'react'
 import axios from 'axios'
 import { wallet } from '../../../config/redux/actions/wallet'
+import { history } from '../../../config/redux/actions/history'
 export default function Confirmation() {
     const dispatch = useDispatch()
     const { data } = useSelector(state => state.details_transactions)
@@ -79,6 +80,10 @@ export default function Confirmation() {
                 .then(res => {
                     axios.get(`${process.env.api}/v1/user/saldo?email=${user.data.email}`).then(res=>dispatch(wallet(res.data.saldo)))
                     setState({...state, toggleModal: false, loading : { ...state.loading, requestTransaction: false}})
+                    axios.get(`${process.env.api}/v1/transactions?id_user=${user.data.id_user}&limit=4`)
+                    .then(response => {
+                        dispatch(history(response.data.data))
+                })
                     router.push("/app/transfer/status")
                 })
                 .catch(err => {

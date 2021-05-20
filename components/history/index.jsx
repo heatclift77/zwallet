@@ -3,6 +3,16 @@ import CustomLayout from '../layout/CustomLayout'
 import Link from 'next/link'
 export default function History() {
     const {history} = useSelector(state=>state.historys)
+    const formatRibuan = (value) => {
+        const sisa = value.toString().length % 3
+        let rupiah = value.toString().substr(0, sisa)
+        const ribuan = value.toString().substr(sisa).match(/\d{3}/g);
+        if (ribuan) {
+        const separator = sisa ? '.' : '';
+        rupiah += separator + ribuan.join('.');
+        }
+        return rupiah
+    }
     return (
         <div>
             <CustomLayout bg="bg-white">
@@ -21,7 +31,7 @@ export default function History() {
                             </div>
                         </div>
                         <div className="my-auto">
-                            <p className="text-danger fw-bold m-0">-Rp {item.amount}</p>
+                            <p className="text-danger fw-bold m-0">-Rp {formatRibuan(item.amount)}</p>
                         </div>
                     </div>
                     })}

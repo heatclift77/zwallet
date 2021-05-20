@@ -5,6 +5,23 @@ import { useRouter } from 'next/router'
 export default function detail({ data }) {
     const reciever = JSON.parse(data)
     const router = useRouter()
+    const formatRibuan = (value) => {
+        const sisa = value.toString().length % 3
+        let rupiah = value.toString().substr(0, sisa)
+        const ribuan = value.toString().substr(sisa).match(/\d{3}/g);
+        if (ribuan) {
+        const separator = sisa ? '.' : '';
+        rupiah += separator + ribuan.join('.');
+        }
+        return rupiah
+    }
+    const dateFormat = (value) => {
+        const date = new Date()
+        const year = date.getFullYear(value)
+        const month = date.getMonth(value)
+        const day = date.getDate(value)
+        return `${day}/${month}/${year}`
+    }
     return (
         <div>
             <CustomLayout bg="bg-white">
@@ -21,11 +38,11 @@ export default function detail({ data }) {
                     </div>
                     <div className="mb-3 w-100 p-3 rounded-md shadow-sm text-start">
                         <p style={{ fontSize: "12px" }}>amount</p>
-                        <span className="fs-6 fw-bold">{reciever.amount}</span>
+                        <span className="fs-6 fw-bold">Rp.{formatRibuan(reciever.amount)}</span>
                     </div>
                     <div className="mb-3 w-100 p-3 rounded-md shadow-sm text-start">
                         <p style={{ fontSize: "12px" }}>Date & time</p>
-                        <span className="fs-6 fw-bold">{reciever.date}</span>
+                        <span className="fs-6 fw-bold">{dateFormat(reciever.date)}</span>
                     </div>
                     <div className="mb-3 w-100 p-3 rounded-md shadow-sm text-start">
                         <p style={{ fontSize: "12px" }}>Notes</p>

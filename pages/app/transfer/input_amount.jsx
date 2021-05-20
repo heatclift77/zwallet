@@ -19,6 +19,12 @@ export default function InputAmount() {
             error: ""
         }
     })
+    useEffect(()=>{
+        if(data.username === ""){
+            router.push("/app/dashboard")
+        }
+    },[])
+    console.log(data);
     // date format
     const d = new Date()
     const date = d.getDate()

@@ -5,7 +5,7 @@ export default function Auth({children}) {
     return (
         <div className="container-fluid">
             <div className="row">
-                <div className="col-12 col-lg-7 position-relative" style={{ background: "#6379F4" , height:"100vh"}}>
+                <div className="col-12 col-lg-7 position-relative" style={{ background: "#6379F4"}}>
                     <div className="position-absolute" style={{ top: "90px", left: "0px" }}>
                         <Image
                             src="/assets/vector.png"
@@ -43,7 +43,7 @@ export default function Auth({children}) {
                         </div>
                     </div>
                 </div>
-                <div className="col-12 col-lg-4" style={{ height:"100vh"}}>
+                <div className="col-12 col-lg-4" >
                     <div className="d-flex flex-column">
                         <div className="align-self-center py-5 ps-5 pe-5 pe-lg-0 ps-lg-5">
                             {children}

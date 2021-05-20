@@ -22,7 +22,7 @@ export default function TemplatePage({ page, children }) {
                         .then(response => {
                             dispatch(wallet(response.data.saldo))
                     })
-                    axios.get(`${process.env.api}/v1/transactions?id_user=${response.data.data.id_user}&limit=2`)
+                    axios.get(`${process.env.api}/v1/transactions?id_user=${response.data.data.id_user}&limit=4`)
                         .then(response => {
                             dispatch(history(response.data.data))
                     })
@@ -41,7 +41,7 @@ export default function TemplatePage({ page, children }) {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-10 mx-auto">
-                        <div className="row h-100">
+                        <div className="row">
                             <div className="col-3 hide show-lg">
                                 <div className="my-5 h-100">
                                     <SideNav
