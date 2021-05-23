@@ -12,7 +12,8 @@
 ---
 
 ## 🧐 About
-e-wallet webb app, there are several features such as responsive page, authentication, manage data profile and transfer.
+e-wallet web app, there are several features such as responsive page, authentication, manage data profile and transfer.
+
 THIS PROJECT FOR ARKADEMY TASK
 
 ## 🔖Build With
