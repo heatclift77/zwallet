@@ -108,7 +108,7 @@ export default function login() {
             <div className="my-5">
                 <MainCustomBtn
                     type={state.email.length > 0 && state.password.length > 0 ? "primary" : "cancel"}
-                    value={loading == true ? "...loading" : "Login"}
+                    value="Login"
                     width="100%"
                     onClick={handleClick}
                     onKeyUp={handleKeyUp}
