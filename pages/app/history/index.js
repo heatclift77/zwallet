@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { CustomLayout } from '../../../components'
 import axios from 'axios'
 import { useRouter } from 'next/router'
+import cookies from 'js-cookie' 
 export default function History() {
     const router = useRouter()
     const { history } = useSelector(state => state.historys)
@@ -86,7 +87,10 @@ export default function History() {
                             </div>
                             <div className="my-auto d-flex">
                                 <p className="text-danger fw-bold m-0 align-self-center me-3">Rp {formatRibuan(item.amount)}</p>
-                                <button className="btn-details-history" onClick={()=>{router.push(`/app/history/${item.id_transaction}`)}}>Details</button>
+                                <button className="btn-details-history" onClick={()=>{
+                                    cookies.set("_ID_TRANS", item.id_transaction)
+                                    router.push("/app/history/details")
+                                }}>Details</button>
                             </div>
                         </div>
                     })}

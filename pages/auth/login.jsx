@@ -48,7 +48,7 @@ export default function login() {
             pass : state.password
         }
         dispatch(signin(akun))
-        .then(res => {
+        .then(() => {
             axios.get(`${process.env.api}/v1/user/saldo?email=${akun.email}`)
             .then(response => {
                 dispatch(wallet(response.data.saldo))
