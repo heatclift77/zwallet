@@ -26,6 +26,18 @@ THIS PROJECT FOR ARKADEMY TASK
 ```
 git clone https://github.com/heatclift77/zwallet.git
 ```
+- Go to the folder
+```
+cd zwallet
+```
+- install package
+```
+npm install
+```
+- done
+```
+npm run dev
+```
 ## 🔎 Preview Design <a name = "preview"></a>
 <span>
     <img width="415" src="https://iili.io/BkPJUl.jpg">   
