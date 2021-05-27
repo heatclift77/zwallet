@@ -45,7 +45,7 @@ export default function login() {
                 router.push('/auth/login')
             })
             .catch(err =>{
-                console.log(err.response);
+                console.log(err.response.data.message);
             })
         }
     }

@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { CustomLayout } from '../../../components'
 import axios from 'axios'
 import { useRouter } from 'next/router'
+import cookies from 'js-cookie' 
 export default function History() {
     const router = useRouter()
     const { history } = useSelector(state => state.historys)
@@ -12,8 +13,15 @@ export default function History() {
         loading : false,
         page : 1,
         limit : 4,
-        sort:""
+        sort:"today"
     })
+    useEffect(()=>{
+        setState({...state, loading:true})
+        axios.get(`${process.env.api}/v1/transactions?id_user=${data.id_user}&limit=${state.limit}&sort=${state.sort}&page=${state.page}`)
+        .then(res=> {
+            setState({...state, data : res.data.data, loading:false})
+        })
+    },[])
     const handleSort = (e) => {
         setState({...state,loading: true})
         axios.get(`${process.env.api}/v1/transactions?id_user=${data.id_user}&limit=${state.limit}&sort=${e.target.value}&page=${state.page}`)
@@ -41,6 +49,16 @@ export default function History() {
             })
         }
     }
+    const formatRibuan = (value) => {
+        const sisa = value.toString().length % 3
+        let rupiah = value.toString().substr(0, sisa)
+        const ribuan = value.toString().substr(sisa).match(/\d{3}/g);
+        if (ribuan) {
+        const separator = sisa ? '.' : '';
+        rupiah += separator + ribuan.join('.');
+        }
+        return rupiah
+    }
     return (
         <div>
             <CustomLayout bg="bg-white">
@@ -49,8 +67,7 @@ export default function History() {
                         <p className="fw-bold" style={{ color: "#000000" }}>Transaction History</p>
                     </div>
                     <select class="form-select mb-3" style={{maxWidth:"160px"}} aria-label="Default select example" onChange={handleSort}>
-                        <option selected>Sort</option>
-                        <option value="today">Today</option>
+                        <option value="today">today</option>
                         <option value="thisWeek">This Week</option>
                         <option value="thisMonth">This Month</option>
                     </select>
@@ -69,8 +86,11 @@ export default function History() {
                                 </div>
                             </div>
                             <div className="my-auto d-flex">
-                                <p className="text-danger fw-bold m-0 align-self-center me-3">Rp {item.amount}</p>
-                                <button className="btn-details-history" onClick={()=>{router.push(`/app/history/${item.id_transaction}`)}}>Details</button>
+                                <p className="text-danger fw-bold m-0 align-self-center me-3">Rp {formatRibuan(item.amount)}</p>
+                                <button className="btn-details-history" onClick={()=>{
+                                    cookies.set("_ID_TRANS", item.id_transaction)
+                                    router.push("/app/history/details")
+                                }}>Details</button>
                             </div>
                         </div>
                     })}

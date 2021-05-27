@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -7,10 +7,12 @@ import { signin } from '../../config/redux/actions/user'
 import {wallet} from '../../config/redux/actions/wallet'
 import swal from 'sweetalert'
 import axios from 'axios'
+import cookies from 'js-cookie'
 export default function login() {
     const {data, loading, error} = useSelector(state=>state.users)
     const dispatch = useDispatch()
     const router = useRouter()
+    const page =  router.pathname.split('/')[2]
     const [state, setState] = useState({
         correct: "#6379F4",
         inCorrect: "#DADADA",
@@ -22,6 +24,12 @@ export default function login() {
             errorPass : ""
         }
     })
+    useEffect(()=>{
+        const token = cookies.get('token')
+        if(token !== undefined){
+            router.push('/app/dashboard')
+        }
+    },[])
     const handleEmail = (e) => {
         setState({
             ...state,
@@ -40,7 +48,7 @@ export default function login() {
             pass : state.password
         }
         dispatch(signin(akun))
-        .then(res => {
+        .then(() => {
             axios.get(`${process.env.api}/v1/user/saldo?email=${akun.email}`)
             .then(response => {
                 dispatch(wallet(response.data.saldo))
@@ -48,6 +56,7 @@ export default function login() {
             router.push('/app/dashboard')
         })
         .catch(err => {
+            swal("Oops", err.message, "error")
             if(err.status == 500){
                 swal("Oops", err.message , "error")
             }
@@ -99,7 +108,7 @@ export default function login() {
             <div className="my-5">
                 <MainCustomBtn
                     type={state.email.length > 0 && state.password.length > 0 ? "primary" : "cancel"}
-                    value={loading == true ? "...loading" : "Login"}
+                    value="Login"
                     width="100%"
                     onClick={handleClick}
                     onKeyUp={handleKeyUp}

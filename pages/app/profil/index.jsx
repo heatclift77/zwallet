@@ -16,12 +16,20 @@ export default function Profil() {
         changeState: false
     })
     const onImageChange = (event) => {
-        if (event.target.files && event.target.files[0]) {
-            let reader = new FileReader();
-            reader.onload = (e) => {
-                setState({...state, avatar: e.target.result , dataImg:event.target.files[0], changeState:true});
-            };
-            reader.readAsDataURL(event.target.files[0]);
+        if(event.target.files[0].type === "image/png" || event.target.files[0].type === "image/jpg" || event.target.files[0].type === "image/jpeg"){
+            if(event.target.files[0].size < 2000000){
+                if(event.target.files && event.target.files[0]) {
+                    let reader = new FileReader();
+                    reader.onload = (e) => {
+                        setState({...state, avatar: e.target.result , dataImg:event.target.files[0], changeState:true});
+                    };
+                    reader.readAsDataURL(event.target.files[0]);
+                }
+            }else{
+                swal("Oops", "ukuran file maksimal 2mb ya", "error")
+            }
+        }else{
+            swal("Oops", "hanya mendukung format png, jpg dan jpeg", "error")
         }
     }
     const handleLogOut = () => {
@@ -29,7 +37,7 @@ export default function Profil() {
         router.push("/")
     }
     const cancelChange = () => {
-        setState({...state, changeState:false})
+        setState({...state, changeState:false, avatar:data.img_profil})
     }
     const applyChange = () => {
         const form = new FormData()

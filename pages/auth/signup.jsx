@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import { CustomInput, MainCustomBtn } from '../../components'
 import axios from 'axios'
 import {register} from '../../config/redux/actions/user'
+import swal from 'sweetalert'
 export default function SignUp() {
     const router = useRouter()
     const dispatch = useDispatch()
@@ -60,20 +61,22 @@ export default function SignUp() {
                 router.push("/auth/create_pin")
             })
             .catch(err => {
-                if(err.response.message == "username sudah digunakan"){
+                swal("error", err.response.data.message, "error")
+                if(err.response.data.message == "username sudah digunakan"){
                     setState({
                         ...state,
                         message : {
                             ...state.message,
-                            errorUsername : response.data.message
+                            errorUsername : err.response.data.message
                         }
                     })
-                }else if(err.response.message == "email sudah terdaftar"){
+                }else if(err.response.data.message == "email sudah terdaftar"){
+                    swal("error", err.response.message ,"error")
                     setState({
                         ...state,
                         message : {
                             ...state.message,
-                            errorEmail : response.data.message
+                            errorEmail :err.response.data.message
                         }
                     })
                 }
