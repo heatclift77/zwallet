@@ -35,7 +35,7 @@ git clone https://github.com/heatclift77/zwallet.git
  </span> 
  
 ## 💻 Live Demo <a name = "live_demo"></a>
-Coming soon
+https://zwallet-heatclift77.vercel.app
 
 ## Backend
 #### Repo Backend : https://github.com/heatclift77/zwallet_api
