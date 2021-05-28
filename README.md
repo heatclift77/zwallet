@@ -12,7 +12,8 @@
 ---
 
 ## 🧐 About
-e-wallet web app, there are several features such as responsive page, authentication, manage data profile and transfer.
+Z-wallet is an e-wallet web apps that make our client transactions more easly, Just register and top-up, search reciever and transfer. You don't need to go to the ATM machine
+for transfer.
 
 THIS PROJECT FOR ARKADEMY TASK
 
